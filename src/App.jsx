@@ -19,7 +19,7 @@ function App() {
       navigator.geolocation.getCurrentPosition((position)=>{
         const lat = position.coords.latitude;
         const lon = position.coords.longitude
-        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&lang=en&appid=${import.meta.env.VITE_API_KEY}`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_API_KEY}`)
         .then(response=>response.json())
         .then(data=>{
           const cityName = data.name;
@@ -44,12 +44,12 @@ function App() {
       })
     }
     return ()=>{firstCallApi()}
-  },[place])
+  },[])
 
   const handleSubmit =(e)=>{
     e.preventDefault()
     if(place==="")return
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${place}&lang=en&appid=${import.meta.env.VITE_API_KEY}`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=${import.meta.env.VITE_API_KEY}`)
     .then(response=>response.json())
     .then(data=>{
       const cityName = data.name;
@@ -78,7 +78,7 @@ function App() {
 const URL_IMAGE = image
 ? `https://openweathermap.org/img/wn/${image}.png`
 : null;
-console.log(image)
+
 return (
 <main className={`min-h-screen flex flex-col items-center justify-center ${darkMode ? 'bg-slate-800' : 'bg-stone-300'} transition-colors`}>
   <div className='bg-stone-300 flex-col md:flex-row mb-5 w-3/4 md:w-1/3 lg:w-1/3 rounded-lg shadow-2xl flex items-center justify-between p-2'>
