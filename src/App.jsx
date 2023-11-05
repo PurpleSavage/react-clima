@@ -45,7 +45,7 @@ function App() {
     }
     return ()=>{firstCallApi()}
   },[])
-
+  console.log("hola")
   const handleSubmit =(e)=>{
     e.preventDefault()
     if(place==="")return
