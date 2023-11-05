@@ -1,6 +1,7 @@
 import { useState,useEffect } from 'react'
-import img from './assets/verano.png'
+import Modal from './components/Modal'
 import BotonSwitch from './components/BotonSwitch'
+import {AiOutlineSearch} from 'react-icons/ai'
 function App() {
   const [currentLocation,setCurrentLocation]=useState('')
   const[windSpeed,setWindSpeed]=useState("")
@@ -10,6 +11,7 @@ function App() {
   const[darkMode,setDarkMode]=useState(false)
   const[image,setImage]=useState("")
   const [weatherDescription,setWeatherDescription]=useState("")
+ // const[permitted,setPermitted]=useState(false)
   useEffect(()=>{
     const firstCallApi=()=>{
       if(!("geolocation" in navigator)){
@@ -45,7 +47,7 @@ function App() {
     }
     return ()=>{firstCallApi()}
   },[])
-  console.log("hola")
+  
   const handleSubmit =(e)=>{
     e.preventDefault()
     if(place==="")return
@@ -88,10 +90,12 @@ return (
   <div className="w-3/4 md:w-1/3 lg:w-1/3 bg-stone-300 p-5 rounded-lg shadow-2xl">
     <form className="flex" onSubmit={handleSubmit}>
       <input type="text" placeholder="place" className="w-3/4 p-2 bg-slate-200" onChange={(e) => {setPlace(e.target.value)}} />
-      <input 
-        type="submit" value="search" 
-        className="cursor-pointer w-1/4 p-2 bg-teal-600 hover:bg-teal-800 rounded-r-lg"
-      />
+      < button
+        type="submit" 
+        className="cursor-pointer w-1/4 p-2 bg-teal-600 hover:bg-teal-800 rounded-r-lg flex items-center justify-center"
+      >
+        <AiOutlineSearch/>
+      </button>
     </form>
     <section className="flex flex-col items-center my-2 justify-center">
       {URL_IMAGE && <img className="w-1/3" src={URL_IMAGE} alt="Weather Icon" />}
@@ -114,6 +118,7 @@ return (
       </div>
     </div>
   </div>
+  <Modal/>
 </main>
 );
 }
