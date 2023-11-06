@@ -29,6 +29,7 @@ function App() {
           const temperature=Math.floor(data.main.temp-273.15)
           const humlocation=Math.floor(data.main.humidity)
           const imageWeather = data.weather[0].icon
+          
           const descriptionImg=data.weather[0].description
 
           setImage(imageWeather)
@@ -60,7 +61,6 @@ function App() {
           const humlocation=Math.floor(data.main.humidity)
           const imageWeather = data.weather[0].icon
           const descriptionImg=data.weather[0].description
-    
           setImage(imageWeather)
           setWeatherDescription(descriptionImg)
           setWindSpeed(speed)
